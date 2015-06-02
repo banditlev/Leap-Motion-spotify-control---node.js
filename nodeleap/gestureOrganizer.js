@@ -96,12 +96,14 @@ exports.knockGesture = function(hand){
 	var chainState = '';
 	main.getChainState(function(callback){
 		chainState = callback;
-	
 		console.log('ChainState --> ' + chainState);
 		
 		if(chainState == 'diverse'){
 			if(hand === inherentSide){
-				server.retrivePeerPlayerInfo();
+				server.retrivePeerPlayerInfo(function(callback){
+					server.peerPlayTrack(callback, 0);
+					spotify.playTrack(callback, 0);
+				});
 				console.log('knock right');
 				main.changeColor('right');
 				main.setChainState('right');
@@ -109,6 +111,7 @@ exports.knockGesture = function(hand){
 				//call peer player with current music
 				var newTrack = playlist.getTrackFromPos(0);
 				server.peerPlayTrack(newTrack.id, 0);
+				spotify.playTrack(newTrack.id, 0);
 				console.log('knock left');
 				main.changeColor('left');
 				main.setChainState('left');
@@ -117,13 +120,13 @@ exports.knockGesture = function(hand){
 		if(chainState != 'diverse'){
 			if(hand === inherentSide){
 				var track = playlist.getTrackFromPos(0);
-				spotify.playTrack(track.id, track.position);
+				spotify.playTrack(track.id, 0);
 				console.log('knock right');
 				main.changeColor('diverse');
 				main.setChainState('diverse');
 			}else {
 				var track = playlist.getTrackFromPos(0);
-				spotify.playTrack(track.id, track.position);
+				server.peerPlayTrack(track.id, 0);
 				console.log('knock left');
 				main.changeColor('diverse');
 				main.setChainState('diverse');

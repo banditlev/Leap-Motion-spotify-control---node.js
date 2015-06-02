@@ -31,7 +31,7 @@ exports.serverInit = function(){
 }
 
 //Retrieve olay info from peer application
-exports.retrivePeerPlayerInfo = function(){
+exports.retrivePeerPlayerInfo = function(callback){
 	var client = restify.createJsonClient({
 		url: 'http://'+peerIp+':'+peerPort,
 		version: '*'
@@ -42,6 +42,8 @@ exports.retrivePeerPlayerInfo = function(){
 		console.log('%j', obj);
 		//Play track
 		//spotify.playTrack(obj.id, obj.position);
+		var id = obj.id;
+		callback(id); 
 	});
 }
 
