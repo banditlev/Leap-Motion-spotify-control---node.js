@@ -16,14 +16,14 @@ exports.swipeLeft = function(hand){
 			if(hand === 'right'){
 				var prev = playlist.getPreviousTrack(trackPosRight);
 				spotify.playTrack(prev.id, 0);
-				trackPosRight < 8 ? trackPosRight++ : trackPosRight = 0;	
+				trackPosRight > 0 ? trackPosRight-- : trackPosRight = 9;	
 			}
 			if(hand === 'left'){
 				//Call peer player
 				var prev = playlist.getPreviousTrack(trackPosLeft);
 				server.peerPlayTrack(prev.id, 0);
 				//server.sendPeerCommand('previous');
-				trackPosLeft < 8 ? trackPosLeft++ : trackPosLeft = 0;
+				trackPosLeft > 0 ? trackPosLeft-- : trackPosLeft = 9;
 				console.log('swipe left, left --> ' + prev);
 			}
 		} else {
@@ -31,8 +31,8 @@ exports.swipeLeft = function(hand){
 			var prev = playlist.getPreviousTrack(trackPosRight);
 			spotify.playTrack(prev.id, 0);
 			server.peerPlayTrack(prev.id, 0);
-			trackPosLeft < 8 ? trackPosLeft++ : trackPosLeft = 0;
-			trackPosRight < 8 ? trackPosRight++ : trackPosRight = 0;
+			trackPosLeft > 0 ? trackPosLeft-- : trackPosLeft = 9;
+			trackPosRight > 0 ? trackPosRight-- : trackPosRight = 9;
 		}
 	});
 }
@@ -45,13 +45,13 @@ exports.swipeRight = function(hand){
 			if(hand === inherentSide){
 				var next = playlist.getNextTrack(trackPosRight);
 				spotify.playTrack(next.id, 0);	
-				trackPosRight < 8 ? trackPosRight++ : trackPosRight = 0;
+				trackPosRight < 9 ? trackPosRight++ : trackPosRight = 0;
 			}else {
 				//Call peer player
 				var next = playlist.getNextTrack(trackPosLeft);
 				server.peerPlayTrack(next.id, 0);
 				//server.sendPeerCommand('previous');
-				trackPosLeft < 8 ? trackPosLeft++ : trackPosLeft = 0;
+				trackPosLeft < 9 ? trackPosLeft++ : trackPosLeft = 0;
 				console.log('swipe left, left --> ' + next);
 			}
 		} else {
@@ -59,8 +59,8 @@ exports.swipeRight = function(hand){
 			spotify.playTrack(next.id, 0);
 			server.peerPlayTrack(next.id, 0);
 			console.log('next both sides playing tracks left:' + next.id + ' right:' + next.id);
-			trackPosLeft < 8 ? trackPosLeft++ : trackPosLeft = 0;
-			trackPosRight < 8 ? trackPosRight++ : trackPosRight = 0;
+			trackPosLeft < 9 ? trackPosLeft++ : trackPosLeft = 0;
+			trackPosRight < 9 ? trackPosRight++ : trackPosRight = 0;
 		}
 	});
 }

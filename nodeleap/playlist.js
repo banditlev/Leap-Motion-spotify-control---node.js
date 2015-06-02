@@ -1,12 +1,14 @@
 //Playlist with preconfigured track id's
-var playList = [{ id: 'spotify:track:3s2RFp5hU6jEvAmfZrnrAi', position: 0 },
-		{ id: 'spotify:track:3psBDYDapH376ErW8D7ZXO', position: 0 },
-		{ id: 'spotify:track:6f6OQJv9qjqyJq9NHin45n', position: 0 },
-		{ id: 'spotify:track:6f6OQJv9qjqyJq9NHin45n', position: 0 },
-		{ id: 'spotify:track:4nbqUfqKObLWhuUT7PWV1N', position: 0 },
-		{ id: 'spotify:track:58VcgWixvxnMdt4bj29PdQ', position: 0 },
-		{ id: 'spotify:track:3PJMsxg6rz9FOo6xNiASXz', position: 0 },
-		{ id: 'spotify:track:58VcgWixvxnMdt4bj29PdQ', position: 0 }];
+var playList = [{ id: 'spotify:track:2BgD1WUT45SDvAqyNAzR3S', position: 0 },
+				{ id: 'spotify:track:6u4eFc9qtTqJ7iArcJOlVz', position: 0 },
+				{ id: 'spotify:track:6oVY50pmdXqLNVeK8bzomn', position: 0 },
+				{ id: 'spotify:track:2eeAKnSvQlMaqz3DKxPy8e', position: 0 },
+				{ id: 'spotify:track:4vLYewWIvqHfKtJDk8c8tq', position: 0 },
+				{ id: 'spotify:track:4XD6hKxQevRCcqKo7XeMtD', position: 0 },
+				{ id: 'spotify:track:4nHR6kbvQXMQjAaIpZfLC4', position: 0 },
+				{ id: 'spotify:track:28ZShfFLY9CgLpd8APVsNo', position: 0 },
+				{ id: 'spotify:track:6kajWUlW8caqSpWvHCbkTN', position: 0 },
+				{ id: 'spotify:track:4Vkk3iD1VrENHJEACNddvt', position: 0 }];
 
 //retrieve random track from playlist
 exports.getRandomTrack = function(){
@@ -29,7 +31,7 @@ exports.getTrackFromPos = function(pos){
 }
 
 exports.getPreviousTrack = function(pos){
-	if(pos <= 0){
+	if(!pos > 0){
 		return playList[playList.length-1];
 	} else {
 		return playList[pos-1];
